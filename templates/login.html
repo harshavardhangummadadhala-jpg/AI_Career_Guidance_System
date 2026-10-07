@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Login | Career AI{% endblock %}
+{% block auth_content %}
+<div class="auth-page">
+    <div class="auth-card">
+        <div class="logo">✦</div>
+        <h1>AI Career Guidance</h1>
+        <p class="muted">Discover your potential. Build your future.</p>
+        <h2>Login</h2>
+        <form method="POST">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Enter your email" required>
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter your password" required>
+            <button class="btn primary" type="submit">Login</button>
+        </form>
+        <p class="center">Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
+    </div>
+</div>
+{% endblock %}

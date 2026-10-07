@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | Career AI{% endblock %}
+{% block content %}
+<section class="hero">
+    <div>
+        <p class="eyebrow">PERSONALIZED CAREER DISCOVERY</p>
+        <h1>Welcome, {{ session.get('user_name') }}!</h1>
+        <p>Take the assessment to discover career paths that match your skills and interests.</p>
+        <a class="btn primary" href="{{ url_for('assessment') }}">✦ Take Career Assessment</a>
+    </div>
+</section>
+
+<div class="section-head">
+    <h2>Your Previous Assessments</h2>
+    <a href="{{ url_for('assessments') }}">View all</a>
+</div>
+
+{% if assessments %}
+<div class="table-card">
+<table>
+<thead><tr><th>#</th><th>Career</th><th>Match Score</th></tr></thead>
+<tbody>
+{% for row in assessments %}
+<tr>
+<td>{{ loop.index }}</td>
+<td><strong>{{ row.predicted_career }}</strong></td>
+<td><span class="badge">{{ row.score }}%</span></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% else %}
+<div class="empty">
+    <h3>No assessment yet</h3>
+    <p>Complete your first assessment to generate your AI career report.</p>
+    <a class="btn primary" href="{{ url_for('assessment') }}">Start Assessment</a>
+</div>
+{% endif %}
+{% endblock %}

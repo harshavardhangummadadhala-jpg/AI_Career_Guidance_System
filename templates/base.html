@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Career AI{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+{% if session.get('user_id') %}
+<div class="app-shell">
+    <aside class="sidebar">
+        <div class="brand">◉ Career<span>AI</span></div>
+        <nav>
+            <a href="{{ url_for('dashboard') }}">⌂ Dashboard</a>
+            <a href="{{ url_for('assessment') }}">✦ Take Assessment</a>
+            <a href="{{ url_for('assessments') }}">▣ My Assessments</a>
+            <a href="{{ url_for('profile') }}">◉ Profile</a>
+            <a href="{{ url_for('logout') }}">↪ Logout</a>
+        </nav>
+    </aside>
+    <main class="main">
+        <header class="topbar">
+            <span>AI-Based Career Guidance System</span>
+            <strong>👤 {{ session.get('user_name') }}</strong>
+        </header>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash">{{ messages[0] }}</div>
+          {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+</div>
+{% else %}
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash auth-flash">{{ messages[0] }}</div>
+      {% endif %}
+    {% endwith %}
+    {% block auth_content %}{% endblock %}
+{% endif %}
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

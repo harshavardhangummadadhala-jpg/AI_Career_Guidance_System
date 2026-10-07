@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}My Assessments | Career AI{% endblock %}
+{% block content %}
+<div class="page-head">
+    <p class="eyebrow">HISTORY</p>
+    <h1>My Assessments</h1>
+</div>
+<div class="table-card">
+<table>
+<thead><tr><th>#</th><th>Career</th><th>Score</th></tr></thead>
+<tbody>
+{% for row in assessments %}
+<tr><td>{{ loop.index }}</td><td>{{ row.predicted_career }}</td><td><span class="badge">{{ row.score }}%</span></td></tr>
+{% else %}
+<tr><td colspan="3">No assessments found.</td></tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Assessment | Career AI{% endblock %}
+{% block content %}
+<div class="page-head">
+    <p class="eyebrow">AI CAREER ASSESSMENT</p>
+    <h1>Rate Your Skills & Interests</h1>
+    <p>Use 1 for very low and 5 for very high.</p>
+</div>
+
+<form method="POST" class="assessment-card">
+    {% set questions = [
+      ("python","Python / Programming","How comfortable are you with coding and programming?"),
+      ("mathematics","Mathematics","How comfortable are you with mathematics and logical problem solving?"),
+      ("communication","Communication","How strong are your communication and presentation skills?"),
+      ("design","Design","How interested are you in visual design, creativity and user experience?"),
+      ("security","Cybersecurity Interest","How interested are you in cybersecurity, networks and system protection?"),
+      ("ai","AI / Machine Learning Interest","How interested are you in AI, machine learning and intelligent systems?")
+    ] %}
+    {% for key, title, desc in questions %}
+    <div class="question">
+        <div>
+            <h3>{{ loop.index }}. {{ title }}</h3>
+            <p>{{ desc }}</p>
+        </div>
+        <select name="{{ key }}" required>
+            <option value="">Select</option>
+            <option value="1">1 - Very Low</option>
+            <option value="2">2 - Low</option>
+            <option value="3">3 - Average</option>
+            <option value="4">4 - High</option>
+            <option value="5">5 - Very High</option>
+        </select>
+    </div>
+    {% endfor %}
+    <button class="btn primary wide" type="submit">Analyze My Career →</button>
+</form>
+{% endblock %}

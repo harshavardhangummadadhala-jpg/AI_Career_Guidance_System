@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Career Result | Career AI{% endblock %}
+{% block content %}
+<div class="success-banner">✓ Your Career Analysis is Complete!</div>
+
+<div class="result-grid">
+    <div class="result-main card">
+        <p class="eyebrow">RECOMMENDED CAREER</p>
+        <h1>✦ {{ career }}</h1>
+        <p>{{ info.description }}</p>
+        <div class="score-circle">{{ score }}%</div>
+        <p class="muted center">AI Match Score</p>
+    </div>
+
+    <div class="card">
+        <h2>Top 3 Career Recommendations</h2>
+        {% for item in top_careers %}
+        <div class="career-row">
+            <span class="rank">{{ loop.index }}</span>
+            <strong>{{ item.career }}</strong>
+            <span class="badge">{{ item.probability }}%</span>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="result-grid">
+    <div class="card">
+        <h2>Required Skills</h2>
+        <ul class="check-list">
+        {% for skill in info.skills %}<li>✓ {{ skill }}</li>{% endfor %}
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Learning Roadmap</h2>
+        <ol class="roadmap">
+        {% for step in info.roadmap %}<li>{{ step }}</li>{% endfor %}
+        </ol>
+    </div>
+</div>
+
+<div class="card">
+    <h2>Recommended Learning Areas</h2>
+    <div class="chips">
+    {% for course in info.courses %}<span>{{ course }}</span>{% endfor %}
+    </div>
+</div>
+
+<a class="btn primary" href="{{ url_for('dashboard') }}">← Back to Dashboard</a>
+{% endblock %}

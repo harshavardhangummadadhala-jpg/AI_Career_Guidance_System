@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Register | Career AI{% endblock %}
+{% block auth_content %}
+<div class="auth-page">
+    <div class="auth-card">
+        <div class="logo">✦</div>
+        <h1>AI Career Guidance</h1>
+        <p class="muted">Create your student profile.</p>
+        <h2>Create Account</h2>
+        <form method="POST">
+            <label>Full Name</label>
+            <input type="text" name="name" placeholder="Your full name" required>
+            <label>Email</label>
+            <input type="email" name="email" placeholder="you@example.com" required>
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Minimum 6 characters" required>
+            <button class="btn primary" type="submit">Register</button>
+        </form>
+        <p class="center">Already registered? <a href="{{ url_for('login') }}">Login</a></p>
+    </div>
+</div>
+{% endblock %}
